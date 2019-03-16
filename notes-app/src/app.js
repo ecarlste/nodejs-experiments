@@ -1,22 +1,20 @@
-import chalk from "chalk";
-import yargs from "yargs";
-import { getNotes } from "./notes";
+import yargs from 'yargs';
 
 yargs
-  .version("1.0.0")
+  .version('1.0.0')
   .command({
-    command: "add",
-    describe: "Add a new note",
+    command: 'add',
+    describe: 'Add a new note',
     builder: {
       title: {
-        describe: "Note title",
+        describe: 'Note title',
         demandOption: true,
-        type: "string"
+        type: 'string'
       },
       body: {
-        describe: "Note body",
+        describe: 'Note body',
         demandOption: true,
-        type: "string"
+        type: 'string'
       }
     },
     handler: argv => {
@@ -25,19 +23,19 @@ yargs
     }
   })
   .command({
-    command: "remove",
-    describe: "Remove a new note",
-    handler: () => console.log("removing a note")
+    command: 'remove',
+    describe: 'Remove a new note',
+    handler: () => console.log('removing a note')
   })
   .command({
-    command: "list",
-    describe: "List all notes",
-    handler: () => console.log("list of all notes")
+    command: 'list',
+    describe: 'List all notes',
+    handler: () => console.log('list of all notes')
   })
   .command({
-    command: "read",
-    describe: "Read a specific new note",
-    handler: () => console.log("reading a note")
+    command: 'read',
+    describe: 'Read a specific new note',
+    handler: () => console.log('reading a note')
   });
 
 yargs.parse();
