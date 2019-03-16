@@ -60,3 +60,8 @@ typings/
 # next.js build output
 .next
 notes-app/notes.json
+
+lib/
+data/
+playground/
+.vscode/
