@@ -1,4 +1,5 @@
 import yargs from 'yargs';
+import notes from './notes';
 
 yargs
   .version('1.0.0')
@@ -17,9 +18,8 @@ yargs
         type: 'string'
       }
     },
-    handler: argv => {
-      console.log(`Title: ${argv.title}`);
-      console.log(`Body: ${argv.body}`);
+    handler: ({ title, body }) => {
+      notes.addNote(title, body);
     }
   })
   .command({
