@@ -40,7 +40,7 @@ yargs
     command: 'list',
     describe: 'List all notes',
     handler() {
-      console.log('list of all notes');
+      notes.listNotes();
     }
   })
   .command({

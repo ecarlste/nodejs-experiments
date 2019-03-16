@@ -30,6 +30,15 @@ export const removeNote = title => {
   }
 };
 
+export const listNotes = () => {
+  const notes = loadNotes();
+
+  console.log(chalk.inverse('Showing all available notes.'));
+  notes.forEach(note => {
+    console.log(note.title);
+  });
+};
+
 const loadNotes = () => {
   try {
     const buffer = fs.readFileSync(filename);
@@ -48,4 +57,4 @@ const saveNotes = notes => {
   }
 };
 
-export default { getNotes, addNote, removeNote };
+export default { getNotes, addNote, listNotes, removeNote };
