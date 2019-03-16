@@ -18,7 +18,7 @@ yargs
         type: 'string'
       }
     },
-    handler: ({ title, body }) => {
+    handler({ title, body }) {
       notes.addNote(title, body);
     }
   })
@@ -32,17 +32,23 @@ yargs
         type: 'string'
       }
     },
-    handler: ({ title }) => notes.removeNote(title)
+    handler({ title }) {
+      notes.removeNote(title);
+    }
   })
   .command({
     command: 'list',
     describe: 'List all notes',
-    handler: () => console.log('list of all notes')
+    handler() {
+      console.log('list of all notes');
+    }
   })
   .command({
     command: 'read',
     describe: 'Read a specific new note',
-    handler: () => console.log('reading a note')
+    handler() {
+      console.log('reading a note');
+    }
   });
 
 yargs.parse();
