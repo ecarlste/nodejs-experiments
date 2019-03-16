@@ -3,14 +3,10 @@ import chalk from 'chalk';
 
 const filename = 'data/notes.json';
 
-export const getNotes = () => {
-  return 'this is a fantastic string using ES6';
-};
-
 export const addNote = (title, body) => {
   const oldNotes = loadNotes();
 
-  if (oldNotes.filter(note => note.title === title).length === 0) {
+  if (!oldNotes.find(note => note.title === title)) {
     saveNotes([...oldNotes, { title, body }]);
     console.log(chalk.green.inverse(`New note with title "${title}" added.`));
   } else {
@@ -39,6 +35,17 @@ export const listNotes = () => {
   });
 };
 
+export const readNote = title => {
+  const note = loadNotes().find(note => note.title === title);
+
+  if (note) {
+    console.log(chalk.bold(title));
+    console.log(note.body);
+  } else {
+    console.log(chalk.red.inverse(`Note with title "${title}" was not found.`));
+  }
+};
+
 const loadNotes = () => {
   try {
     const buffer = fs.readFileSync(filename);
@@ -57,4 +64,4 @@ const saveNotes = notes => {
   }
 };
 
-export default { getNotes, addNote, listNotes, removeNote };
+export default { addNote, listNotes, readNote, removeNote };
