@@ -29,6 +29,13 @@ app.get('/help', (req, res) => {
 app.get('/weather', (req, res) => {
   res.send('Your weather!');
 });
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: '404 - Page Not Found',
+    name: 'Erik S. Carlsten',
+    errorMessage: "These aren't the droids your're looking for!!!"
+  });
+});
 
 app.listen(3000, () => {
   console.log('listening on port 3000!');
