@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { geocode } from './utils/geocode';
 import { forecast } from './utils/forecast';
 

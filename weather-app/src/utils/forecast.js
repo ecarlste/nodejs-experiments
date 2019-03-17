@@ -1,7 +1,9 @@
 import request from 'request';
 
 export const forecast = (latitude, longitude, callback) => {
-  const url = `https://api.darksky.net/forecast/0f35d5f01c272ef9c6e469e23729c2bc/${latitude},${longitude}`;
+  const url = `https://api.darksky.net/forecast/${
+    process.env.DARKSKY_API_KEY
+  }/${latitude},${longitude}`;
 
   request({ url, json: true }, (error, { body }) => {
     if (error) {
