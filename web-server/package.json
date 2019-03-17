@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node lib/app.js",
     "build": "npm run clean && babel src -d lib",
-    "clean": "rm -rf lib"
+    "clean": "rm -rf lib",
+    "dev": "NODE_ENV=dev nodemon --exec \"npm run build && npm start\" --ignore lib/ --ignore data/ --ignore playground/ -e js,hbs"
   },
   "keywords": [],
   "author": "",

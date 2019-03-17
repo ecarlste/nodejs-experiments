@@ -1,6 +1,4 @@
 /* eslint-disable no-undef */
-console.log('Client side javascript wished it had chalk.js!!!');
-
 const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
 
@@ -13,7 +11,7 @@ weatherForm.addEventListener('submit', e => {
   forecastInfo.textContent = 'Loading...';
   locationName.textContent = '';
 
-  fetch(`http://localhost:3000/weather?address=${search.value}`).then(response => {
+  fetch(`/weather?address=${search.value}`).then(response => {
     response.json().then(({ error, forecast, location }) => {
       if (error) {
         forecastInfo.textContent = error;

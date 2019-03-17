@@ -5,9 +5,14 @@ import dotenv from 'dotenv';
 import geocode from './utils/geocode';
 import forecast from './utils/forecast';
 
-dotenv.config();
+if (process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
+  console.log('RUNNING IN DEV MODE');
+  dotenv.config();
+}
 
 const app = express();
+const port = process.env.PORT || 3000;
+
 const publicDir = path.join(__dirname, '../public');
 const viewsDir = path.join(__dirname, '../templates/views');
 const partialsDir = path.join(__dirname, '../templates/partials');
@@ -68,6 +73,6 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('listening on port 3000!');
+app.listen(port, () => {
+  console.log(`listening on port ${port}...`);
 });
