@@ -1,19 +1,15 @@
+import path from 'path';
 import express from 'express';
 
 const app = express();
+const publicDir = path.join(__dirname, '../public');
+
+app.set('view engine', 'hbs');
+app.use(express.static(publicDir));
 
 app.get('', (req, res) => {
-  res.send('Hello, world!');
+  res.render('index', { title: 'Weather App', name: 'Erik S. Carlsten' });
 });
-
-app.get('/help', (req, res) => {
-  res.send('Help page!');
-});
-
-app.get('/about', (req, res) => {
-  res.send('About page!');
-});
-
 app.get('/weather', (req, res) => {
   res.send('Your weather!');
 });
