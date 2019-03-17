@@ -8,17 +8,17 @@ if (!location) {
   process.exit(0);
 }
 
-geocode(location, (error, geocodeData) => {
+geocode(location, (error, { latitude, longitude, location }) => {
   if (error) {
     return console.error(error);
   }
 
-  forecast(geocodeData.latitude, geocodeData.longitude, (error, forecastData) => {
+  forecast(latitude, longitude, (error, forecastData) => {
     if (error) {
       console.error(error);
     }
 
-    console.log(geocodeData.location);
+    console.log(location);
     console.log(forecastData);
   });
 });
