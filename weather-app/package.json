@@ -23,5 +23,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
 }
