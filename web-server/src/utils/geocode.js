@@ -7,9 +7,9 @@ const geocode = (address, callback) => {
 
   request({ url, json: true }, (error, { body }) => {
     if (error) {
-      callback('Unable to connect to mapbox geocoding service.');
+      callback('Unable to connect to mapbox geocoding service.', {});
     } else if (body.features.length === 0) {
-      callback('Unable to determine location. Try another search.');
+      callback('Unable to determine location. Try another search.', {});
     } else {
       const { center, place_name: placeName } = body.features[0];
       callback(undefined, { latitude: center[1], longitude: center[0], location: placeName });

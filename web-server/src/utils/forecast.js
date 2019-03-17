@@ -7,9 +7,9 @@ const forecast = (latitude, longitude, callback) => {
 
   request({ url, json: true }, (error, { body }) => {
     if (error) {
-      callback('Unable to connect to dark sky weather service.');
+      callback('Unable to connect to dark sky weather service.', '');
     } else if (body.error) {
-      callback('Unable to find location.');
+      callback('Unable to find location.', '');
     } else {
       const weather = body.currently;
       callback(
