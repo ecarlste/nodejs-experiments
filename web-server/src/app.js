@@ -1,6 +1,11 @@
 import path from 'path';
 import express from 'express';
 import hbs from 'hbs';
+import dotenv from 'dotenv';
+import geocode from './utils/geocode';
+import forecast from './utils/forecast';
+
+dotenv.config();
 
 const app = express();
 const publicDir = path.join(__dirname, '../public');
@@ -27,7 +32,33 @@ app.get('/help', (req, res) => {
   });
 });
 app.get('/weather', (req, res) => {
-  res.send('Your weather!');
+  const { address } = req.query;
+
+  if (!address) {
+    return res.send({
+      error: 'You must provide an address'
+    });
+  }
+
+  return geocode(address, (geocodeError, { latitude, longitude, location }) => {
+    if (geocodeError) {
+      return res.send({
+        error: geocodeError
+      });
+    }
+
+    return forecast(latitude, longitude, (forecastError, forecastText) => {
+      if (forecastError) {
+        return res.send({ error: forecastError });
+      }
+
+      return res.send({
+        forecast: forecastText,
+        location,
+        address: req.query.address
+      });
+    });
+  });
 });
 app.get('*', (req, res) => {
   res.render('404', {

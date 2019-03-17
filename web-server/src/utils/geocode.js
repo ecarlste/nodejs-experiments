@@ -1,6 +1,6 @@
 import request from 'request';
 
-export const geocode = (address, callback) => {
+const geocode = (address, callback) => {
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${
     process.env.MAPBOX_API_KEY
   }&limit=1`;
@@ -11,8 +11,10 @@ export const geocode = (address, callback) => {
     } else if (body.features.length === 0) {
       callback('Unable to determine location. Try another search.');
     } else {
-      const { center, place_name } = body.features[0];
-      callback(undefined, { latitude: center[1], longitude: center[0], location: place_name });
+      const { center, place_name: placeName } = body.features[0];
+      callback(undefined, { latitude: center[1], longitude: center[0], location: placeName });
     }
   });
 };
+
+export default geocode;

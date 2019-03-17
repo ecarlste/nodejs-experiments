@@ -1,6 +1,6 @@
 import request from 'request';
 
-export const forecast = (latitude, longitude, callback) => {
+const forecast = (latitude, longitude, callback) => {
   const url = `https://api.darksky.net/forecast/${
     process.env.DARKSKY_API_KEY
   }/${latitude},${longitude}`;
@@ -21,3 +21,5 @@ export const forecast = (latitude, longitude, callback) => {
     }
   });
 };
+
+export default forecast;
